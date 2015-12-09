@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block navbar %}
+
+    {% include "navbar.html" %}
+
+{% endblock %}
+
+
+{% block content %}
+
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h4 class="text-muted"><em>{{ quote }}</em></h4>
+                <h3>OOOPPS!</h3>
+                <hr class="primary">
+                <h3>We couldn't find what you were looking for</h3>
+                <br>
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 text-center">
+                        <input type="button" onclick="goBack()" value="Go Back" class="btn btn-primary btn-xl page-scroll" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% block extra_js %}
+
+    <script>
+
+        function goBack() {
+        window.history.back()
+        }
+
+    </script>
+
+{% endblock %}
+
+{% endblock %}

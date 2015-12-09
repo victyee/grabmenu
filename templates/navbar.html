@@ -1,0 +1,52 @@
+<nav id="mainNav" class="navbar navbar-default navbar-default2 navbar-fixed-top">
+    <!-- <div class="container-fluid"> -->
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="/">grabmenu</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="background-color:white;">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form action="/s/" role="search" class="navbar-form">
+                       <div class="input-group">
+                           <input size="11" type="Search" placeholder="" class="form-control" name='q'/>
+                           <div class="input-group-btn">
+                               <button class="btn btn-info search2">
+                                <span class="glyphicon glyphicon-search"></span>
+                               </button>
+                           </div>
+                       </div>
+                    </form>
+                </li>
+                <li>
+                    <a href="{% url 'about' %}">About</a>
+                </li>
+                <li>
+                    <a href="{% url 'contact' %}">Contact</a>
+                </li>
+                <li>
+                    <a href="{% url 'faq' %}">FAQ</a>
+                </li>
+                <li>
+                    <a href="{% url 'terms' %}">Terms</a>
+                </li>
+                <li>
+                    <a href="/"><i class="fa fa-twitter fa-2x" style="color:#4099ff;"></i></a>
+                </li>
+                <li>
+                    <a href="/"><i class="fa fa-facebook fa-2x" style="color:#3b5998;"></i></a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    <!-- </div> -->
+    <!-- /.container-fluid -->
+</nav>

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+
+{% block navbarhome %}
+
+    {% include "navbarhome.html" %}
+
+{% endblock %}
+
+
+{% block homepage %}
+
+<header>
+    <div class="header-content">
+        <div class="header-content-inner">
+          
+          <!-- ALERT MESSAGES -->
+            <div class="container-fluid">
+               {% if messages %}
+                  {% for message in messages %}
+                  <div class='alert {% if "success" in message.tags %}alert-success{% elif "warning" in message.tags%}alert-warning{% elif "error" in message.tags %}alert-danger{% endif %} alert-dismissible' role='alert'>
+                  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                 
+                {% if "safe" in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+            </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+          <!-- END ALERT MESSAGES -->
+
+            <h1>See every restaurant's menu</h1>
+            <hr>
+            <p><span class="text-underlined"><strong>Know</strong></span> each restaurant's <span class="text-underlined"><strong>menu</strong></span> and <span class="text-underlined"><strong>prices</strong></span> <br> <em>No unpleasant surprises</em></p>
+            <form action="/s/" role="search" class="navbar-form">
+               <div class="input-group">
+                   <input size="50" type="Search" placeholder="Restaurant's name, city or state" class="form-control" name='q'/>
+                   <div class="input-group-btn">
+                       <button class="btn btn-info search2">
+                        <span class="glyphicon glyphicon-search"></span>
+                       </button>
+                   </div>
+               </div>
+            </form>
+            <br>
+            <div>
+            <hr>
+            <br>
+        </div>
+            <a href="{% url 'owners' %}" class="btn btn-primary btn-xl page-scroll">Restaurant Owner?</a>
+        </div>
+    </div>
+</header>
+
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+
+{% block navbar %}
+
+    {% include "navbar.html" %}
+
+{% endblock %}
+
+
+
+{% block content %}
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">We're here to help you!</h2>
+                <p>hungry@grabmenu.com.au</p>
+                <hr class="primary">
+            </div>
+        </div>
+        <!-- ALERT MESSAGES -->
+            <div class="container-fluid">
+               {% if messages %}
+                  {% for message in messages %}
+                  <div class='alert {% if "success" in message.tags %}alert-success{% elif "warning" in message.tags%}alert-warning{% elif "error" in message.tags %}alert-danger{% endif %} alert-dismissible' role='alert'>
+                  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                 
+                {% if "safe" in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+            </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+          <!-- END ALERT MESSAGES -->
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <form method="POST" action='{% url "contact" %}' role="form" id="contact-form" class="contact-form"> {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Name*" value="{{ name }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="E-mail*" value="{{ email }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="contact_number" id="contact_number" placeholder="Contact Number" value="{{ contact_number }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" value="{{ subject }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <textarea class="form-control textarea" rows="3" name="message" id="message" placeholder="Message*">{{ message }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn main-btn pull-right">Send</button>
+                        </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <hr class="primary">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading text-capitalize">Restaurant Owner?</h2>
+                <p>List your menu for free</p>
+                <a href="{% url 'owners' %}" class="btn btn-primary btn-xl page-scroll">Let's go</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block layout_head_title %}
+About - grabmenu
+{% endblock %}
+
+{% load staticfiles %}
+
+{% block navbarhome %}
+
+    {% include "navbar.html" %}
+
+{% endblock %}
+
+
+{% block content %}
+
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h4 class="text-muted"><em>{{ quote }}</em></h4>
+                <h2 class="section-heading logo-font">grabmenu</h2>
+                <hr class="primary">
+                <p><span class="logo-font">grabmenu</span> is created by a bunch of foodies with a passion on well, food!</p>
+                <p>Frankly, we're fed-up with out of date paper menus, paper wastage and our fridge's door is pretty much cluttered with them!</p>
+                <p>We're creating an online menu directory for all restaurants in Australia. You'll be able browse through thousands of restaurants' menu at anytime.</p>
+                <p><span class="logo-font">grabmenu</span> is proudly made in Melbourne</p>
+            </div>
+        </div>
+    </div>    
+</section>
+	
+{% endblock %}
+
+
+

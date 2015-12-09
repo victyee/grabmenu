@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+
+{% block navbar %}
+
+    {% include "navbar.html" %}
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading text-capitalize">List your menu for <span class="text-underlined">free</span></h2>
+                <p>Join us as we create the largest online menu directory. Get your menu displayed to millions of Australians.</p>
+                <p>Fill out the form below or alternatively email us at hungry@grabmenu.com.au</p>
+                <p>Made changes to your menu? Send us the updates.</p>
+                <p>* required</p>
+                <hr class="primary">
+
+                <!-- ALERT MESSAGES -->
+                    <div class="container-fluid">
+                       {% if messages %}
+                          {% for message in messages %}
+                          <div class='alert {% if "success" in message.tags %}alert-success{% elif "warning" in message.tags%}alert-warning{% elif "error" in message.tags %}alert-danger{% endif %} alert-dismissible' role='alert'>
+                          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                         
+                        {% if "safe" in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+                    </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                  <!-- END ALERT MESSAGES -->
+
+                <h3 class="text-muted"><em>Your restaurant</em></h3>
+
+                {% for entry in found_entries %}
+                <h3 class="text-capitalize"><a href='{{ entry.get_absolute_url }}'> {{ entry }} </a></h3>
+                    <p class="text-capitalize">{{ entry.restaurant_address1 }}, 
+                    {{ entry.restaurant_address2 }}<br>
+                    {{ entry.restaurant_state }}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <form action='{% url "owners" %}' method="POST" enctype="multipart/form-data" role="form" id="contact-form" class="contact-form">{% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="restaurant_name" id="restaurant_name" placeholder="Restaurant's Name*" value="{{ restaurant_name }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="street_address" id="street_address" placeholder="Street Address*" value="{{ street_address }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="city" id="city" placeholder="City*" value="{{ city }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="state" id="state" placeholder="State*" value="{{ state }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+			            <div class="col-lg-8 col-lg-offset-2 text-center">
+			                <h3 class="text-muted"><em>Menu</em></h3>
+			                <p>Submit your menu's url or attach a copy of your menu (max 2MB). Email us if you've multiple files</p>
+			            </div>
+			        </div>
+			        <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="website" id="website" placeholder="Website" value="{{ website }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="file" class="form-control" name="menu" id="menu" placeholder="Menu" value="{{ menu }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+			            <div class="col-lg-8 col-lg-offset-2 text-center">
+			                <h3 class="text-muted"><em>Contact info</em></h3>
+			            </div>
+			        </div>
+			        <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="owner_name" id="owner_name" placeholder="Name*" value="{{ owner_name }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="contact_number" id="contact_number" placeholder="Contact Number" value="{{ contact_number }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email*" value="{{ email }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+			            <div class="col-lg-8 col-lg-offset-2 text-center">
+			                <h3 class="text-muted"><em>Message (if any)</em></h3>
+			            </div>
+			        </div>
+			        <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <textarea class="form-control textarea" rows="3" name="message" id="message" placeholder="Anything we should know">{{ message }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn main-btn pull-right">Submit request</button>
+                        </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

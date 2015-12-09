@@ -1,0 +1,333 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+
+    {% include "navbar.html" %}
+
+{% endblock %}
+
+
+{% block content %}
+
+<section class="bg-primary" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading text-capitalize">{{ restaurant.restaurant_name }}</h2>
+                <hr class="light">
+                <p class="text-faded text-capitalize">{{ restaurant.restaurant_address1 }}, {{ restaurant.restaurant_address2 }} <br> {{ restaurant.restaurant_state }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="container-fluid bg-dark">
+    <div class="container text-center">
+        <ul id="menu-meals" class="nav nav-tabs center-pills" style="display: inline-block; float: none; vertical-align: top; text-align: center; border-bottom: none;">
+        {% for menu in menus %}
+            {% if menu.show_presentation %}
+            <li role="presentation">
+                {% if menu.mealtype == '1Entrees' %}
+                    <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab" style="border-radius: 0px; margin-right: 0px;">Entrees</a>
+                {% elif menu.mealtype == '2Sides' %}
+                    <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab" style="border-radius: 0px; margin-right: 0px;">Sides</a>
+                {% elif menu.mealtype == '3Mains' %}
+                    <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab" style="border-radius: 0px; margin-right: 0px;">Mains</a>
+                {% elif menu.mealtype == '4Drinks' %}
+                    <a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab" style="border-radius: 0px; margin-right: 0px;">Drinks</a> 
+                {% elif menu.mealtype == '5Desserts' %}
+                    <a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab" style="border-radius: 0px; margin-right: 0px;">Desserts</a>
+                {% elif menu.mealtype == '6Specials' %}
+                    <a href="#tab6" aria-controls="tab6" role="tab" data-toggle="tab" style="border-radius: 0px; margin-right: 0px;">Specials</a>
+                {% elif menu.mealtype == '7Others' %}
+                    <a href="#tab7" aria-controls="tab7" role="tab" data-toggle="tab" style="border-radius: 0px; margin-right: 0px;">Others</a>
+                {% elif menu.mealtype == '8Lunch' %}
+                    <a href="#tab8" aria-controls="tab8" role="tab" data-toggle="tab" style="border-radius: 0px; margin-right: 0px;">Lunch</a>
+                {% endif %}
+            </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<section>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade" id="tab1">
+            {% for menu in menus %}
+            {% if menu.mealtype == '1Entrees' %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-capitalize">{{ menu.title }}</h2>
+                        <p><em>{{ menu.description }}</em></p>
+                        {% if menu.title or menu.description %}
+                        <hr class="primary">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {% for item in menu.menuitem_set.all %}
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box">
+                            <h4>{{ item.item_name }} <strong>{% if item.price %}${{ item.price|floatformat:2 }}{% endif %}</strong><span><p class="text-muted text-muted-psize"><em>{{ item.description }}</em></p></h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="tab2">
+            {% for menu in menus %}
+            {% if menu.mealtype == '2Sides' %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-capitalize">{{ menu.title }}</h2>
+                        <p><em>{{ menu.description }}</em></p>
+                        {% if menu.title or menu.description %}
+                        <hr class="primary">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {% for item in menu.menuitem_set.all %}
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box">
+                            <h4>{{ item.item_name }} <strong>{% if item.price %}${{ item.price|floatformat:2 }}{% endif %}</strong><span><p class="text-muted text-muted-psize"><em>{{ item.description }}</em></p></h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="tab3">
+            {% for menu in menus %}
+            {% if menu.mealtype == '3Mains' %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-capitalize">{{ menu.title }}</h2>
+                        <p><em>{{ menu.description }}</em></p>
+                        {% if menu.title or menu.description %}
+                        <hr class="primary">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {% for item in menu.menuitem_set.all %}
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box">
+                            <h4>{{ item.item_name }} <strong>{% if item.price %}${{ item.price|floatformat:2 }}{% endif %}</strong><span><p class="text-muted text-muted-psize"><em>{{ item.description }}</em></p></h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="tab4">
+            {% for menu in menus %}
+            {% if menu.mealtype == '4Drinks' %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-capitalize">{{ menu.title }}</h2>
+                        <p><em>{{ menu.description }}</em></p>
+                        {% if menu.title or menu.description %}
+                        <hr class="primary">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {% for item in menu.menuitem_set.all %}
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box">
+                            <h4>{{ item.item_name }} <strong>{% if item.price %}${{ item.price|floatformat:2 }}{% endif %}</strong><span><p class="text-muted text-muted-psize"><em>{{ item.description }}</em></p></h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="tab5">
+            {% for menu in menus %}
+            {% if menu.mealtype == '5Desserts' %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-capitalize">{{ menu.title }}</h2>
+                        <p><em>{{ menu.description }}</em></p>
+                        {% if menu.title or menu.description %}
+                        <hr class="primary">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {% for item in menu.menuitem_set.all %}
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box">
+                            <h4>{{ item.item_name }} <strong>{% if item.price %}${{ item.price|floatformat:2 }}{% endif %}</strong><span><p class="text-muted text-muted-psize"><em>{{ item.description }}</em></p></h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="tab6">
+            {% for menu in menus %}
+            {% if menu.mealtype == '6Specials' %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-capitalize">{{ menu.title }}</h2>
+                        <p><em>{{ menu.description }}</em></p>
+                        {% if menu.title or menu.description %}
+                        <hr class="primary">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {% for item in menu.menuitem_set.all %}
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box">
+                            <h4>{{ item.item_name }} <strong>{% if item.price %}${{ item.price|floatformat:2 }}{% endif %}</strong><span><p class="text-muted text-muted-psize"><em>{{ item.description }}</em></p></h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="tab7">
+            {% for menu in menus %}
+            {% if menu.mealtype == '7Others' %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-capitalize">{{ menu.title }}</h2>
+                        <p><em>{{ menu.description }}</em></p>
+                        {% if menu.title or menu.description %}
+                        <hr class="primary">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {% for item in menu.menuitem_set.all %}
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box">
+                            <h4>{{ item.item_name }} <strong>{% if item.price %}${{ item.price|floatformat:2 }}{% endif %}</strong><span><p class="text-muted text-muted-psize"><em>{{ item.description }}</em></p></h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="tab8">
+            {% for menu in menus %}
+            {% if menu.mealtype == '8Lunch' %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-capitalize">{{ menu.title }}</h2>
+                        <p><em>{{ menu.description }}</em></p>
+                        {% if menu.title or menu.description %}
+                        <hr class="primary">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    {% for item in menu.menuitem_set.all %}
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="service-box">
+                            <h4>{{ item.item_name }} <strong>{% if item.price %}${{ item.price|floatformat:2 }}{% endif %}</strong><span><p class="text-muted text-muted-psize"><em>{{ item.description }}</em></p></h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <br>
+    </div>
+</section>
+
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center button-bottom">
+                <a href="{% url 'contact' %}" class="btn btn-primary btn-xl page-scroll">Report Error</a>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <p style="font-size:9px;">{{ restaurant}}'s menu and prices may have changed since the last update. grabmenu.com.au does not guarantee prices or the availability of menu items at {{ restaurant }}. Last updated on {{ restaurant.updated }}</p>
+            </div>
+        </div>
+    </div>
+</section>  
+{% endblock %}
+
+

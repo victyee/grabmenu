@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block layout_head_title %}
+About - grabmenu
+{% endblock %}
+
+{% load staticfiles %}
+
+{% block navbarhome %}
+
+    {% include "navbar.html" %}
+
+{% endblock %}
+
+
+{% block content %}
+
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">What is <span class="logo-font">grabmenu</span></h2>
+                <p><span class="logo-font">grabmenu</span> is an online menu directory. We list menus of restaurants Australia wide.</p>
+                <hr class="primary">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">What sort of menus are listed?</h2>
+                <p>Any! We list menus from all varieties of restaurants.</p>
+                <hr class="primary">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Nothing is showing up in my search</h2>
+                <p>Bummer, check back later or <a href="{% url 'contact' %}">send</a> us what you're after and we'll help you out!</p>
+                <hr class="primary">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">How do I get my restaurant's menu listed?</h2>
+                <p>Simply <a href="{% url 'owners' %}">submit a request</a></p>
+                <hr class="primary">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Any fees/charges to list my restaurant's menu?</h2>
+                <p>Not at all, it's completely free!</p>
+                <hr class="primary">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">I've updated my menu</h2>
+                <p><a href="{% url 'owners' %}">Submit changes</a> or alternatively email us at hungry@grabmenu.com.au</p>
+                <hr class="primary">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Please remove my menu</h2>
+                <p>We're sorry to see you go. <a href="{% url 'contact' %}">Contact us</a> and we'll help you out</p>
+                <hr class="primary">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Best way to get in touch?</h2>
+                <p><a href="{% url 'contact' %}">Contact us </a>or shoot us an email at hungry@grabmenu.com.au</p>
+                <hr class="primary">
+            </div>
+        </div>
+    </div>
+</section>
+    
+{% endblock %}
